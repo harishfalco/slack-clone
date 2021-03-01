@@ -39,7 +39,7 @@ display:grid;
 grid-template-rows:30px auto;
 `;
 const Main  = styled.div`
-background:blue;
+
 display:grid;
 grid-template-columns: 260px auto;
 `;
