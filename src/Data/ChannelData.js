@@ -19,5 +19,9 @@ export const channelItems  = [
     {
         name:'channel 5',
         id:"5"
+    },
+    {
+        name:"channel 6",
+        id:"6"
     }
 ]

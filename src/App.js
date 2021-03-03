@@ -4,17 +4,36 @@ import Login from './Components/Login';
 import Header from './Components/Header';
 import styled from 'styled-components';
 import SideBar from './Components/SideBar'
+import db  from './FireBase/FireBase';
+import React, { useEffect , useState } from 'react'
 import './App.css';
 
 
 function App() {
+
+  const [rooms,setRooms] = useState([])
+
+  const getChannels = ()=>{
+    db.collection('rooms').onSnapshot((snapshot)=>{
+      setRooms(snapshot.docs.map((doc)=>{
+         return {id:doc.id , name:doc.data().name}
+      }))
+    })
+  }
+
+  useEffect(() => {
+    getChannels();
+  }, [])
+
+  
+
   return (
     <div className="App">
       <Router>
         <Container>
           <Header /> 
           <Main>
-            <SideBar />
+            <SideBar rooms={rooms} />
           <Switch>
                 <Route path="/room">
                   <Chat />
