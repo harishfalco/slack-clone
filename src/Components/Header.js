@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import AddBoxIcon from '@material-ui/icons/AddBox';
 import HelpOutlineIcon from '@material-ui/icons/HelpOutline';
 import userimg from '../img/userimg.png'
-const Header = () => {
+const Header = ({user,signOut}) => {
     return (
         <div>
             <Container>
@@ -21,10 +21,10 @@ const Header = () => {
                </Main>
                 <UserContainer>
                     <Name>
-                        Harish
+                       {user.name}
                     </Name>
-                    < UserImage>
-                        <img src={userimg}
+                    < UserImage onClick={signOut}>
+                        <img src={user.photo}
                         alt="j"
                         />
                         </UserImage>
@@ -101,6 +101,7 @@ width:28px;
 height:28px;
 border:2px solid white;
 border-radius:3px;
+cursor:pointer;
 img{
     width:100%;
 }

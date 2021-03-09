@@ -1,15 +1,25 @@
 import React from 'react'
 import styled from 'styled-components'
 import SendIcon from '@material-ui/icons/Send';
-const ChatInput = () => {
+import {useState} from 'react';
+const ChatInput = ({sendMessage}) => {
+
+    const [input, setInput] = useState(``);
+
+    const send =(e) =>{
+        e.preventDefault();
+        if(!input) return ;
+        sendMessage(input)
+        setInput('')
+    }
     return (
 
         <Container>
             <InputContainer>
-               <form>
-                   <input type="text" placeholder="message here.." />
+               <form >
+                   <input type="text" placeholder="message here.." onChange={(e)=>setInput(e.target.value)} />
                    <SendButton>
-                        <Send />
+                        <Send onClick={send} type="submit" />
                    </SendButton>
                </form>
                </InputContainer>
@@ -26,6 +36,7 @@ const Container  = styled.div
 padding-left:20px;
 padding-right:20px;
 padding-bottom:24px;
+min-height:0;
 `;
 const InputContainer  = styled.div
 `
@@ -47,7 +58,7 @@ form{
     
 }
 `;
-const SendButton  = styled.div
+const SendButton  = styled.button
 `background:green;
 border-radius:2px;
 width:30px;

@@ -5,7 +5,15 @@ import {sidebarItems} from '../Data/SideBarData'
 import AddIcon from '@material-ui/icons/Add';
 // import {channelItems } from '../Data/ChannelData'
 import db from '../FireBase/FireBase'
+import {useHistory} from 'react-router-dom'
 const SideBar = (props) => {
+    const history = useHistory();
+
+    const goToChannel = (id)=>{
+        if(id){
+            history.push(`/room/${id}`)
+        }
+    }
 
     const addChannel = ()=>{
         const promptName = prompt("Enter channel name");
@@ -45,7 +53,7 @@ const SideBar = (props) => {
                     <ChannelsList>
                         {
                              props.rooms.map(item=>
-                                <Channel>
+                                <Channel onClick={()=>goToChannel(item.id)}>
                                    # {item.name}
                                 </Channel>
                             )

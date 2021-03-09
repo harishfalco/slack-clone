@@ -1,37 +1,34 @@
 import React from 'react'
 import styled from 'styled-components'
-import userimg from '../img/userimg.png'
-const ChatMessage = () => {
+
+const ChatMessage = ({data}) => {
     return (
-        <Container>
-            <UserAvatar>
-                <img src={userimg} alt="img" />
-            </UserAvatar>
-            <MessageContent>
-                <Name>
-                    Harish kumar
-                    <span>data</span>
-                </Name>
-                <Text>
-                    hello da punda
-                </Text>
-            </MessageContent>
-        </Container>
+    <Container>
+        <UserAvatar>
+            <img src={data.userImage} alt="img" />
+        </UserAvatar>
+        <MessageContent>
+            <Name>
+                {data.user}
+                {/* <span>{new Date(data.timestamp.toDate()).toUTCString()}</span>  */}
+            </Name>
+            <Text>
+                {data.text}
+            </Text>
+        </MessageContent>
+    </Container>
     )
 }
 
 export default ChatMessage
 
 const Container = styled.div
-`
-padding:8px 20px;
+`padding:8px 20px;
 display:flex;
 align-items:center;
-
 `;
 const UserAvatar = styled.div
-`
-width:36px;
+`width:36px;
 height:36px;
 border-radius:2px;
 overflow:hidden;
@@ -41,8 +38,7 @@ img{
 }
 `;
 const MessageContent = styled.div
-`
-display:flex;
+`display:flex;
 flex-direction:column
 `;
 const Name = styled.span
